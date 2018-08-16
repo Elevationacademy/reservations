@@ -3,11 +3,12 @@ const reservations = {
   'Ted': { claimed: true }
 }
 
-const name = prompt('Please enter the name for your reservation');
+let name = prompt('Please enter the name for your reservation');
 
 const claimReservation = function () {
   // write your code here!
   if (hasReservasion(name)) {
+    name = capitalize(name)
     if (reservations[name].claimed) {
       alert("You have already claimed your reservation")
     } else {
@@ -15,18 +16,28 @@ const claimReservation = function () {
       reservations[name].claimed = true
     }
   } else {
-    alert("Sorry, no reservations under that name..")
+    alert("We made a new reservation for you. Welcome, " + name)
+    newReservation(name)
   }
 }
 
-function hasReservasion (name) {
-  const names = Object.keys(reservations) // ['Bob', 'Ted']
-  for (let n of names) {
-    if (name == n) {
+function hasReservasion (user) {
+  const allNames = Object.keys(reservations)
+  for (let n of allNames) {
+    if (user.toLowerCase() == n.toLowerCase()) {
       return true
     }
   }
   return false
+}
+
+function capitalize (name) {
+  let fixedName = name[0].toUpperCase() + name.slice(1).toLowerCase()
+  return fixedName
+}
+
+function newReservation (user) {
+  reservations[user].claimed = true
 }
 
 claimReservation();
