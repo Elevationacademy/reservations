@@ -1,14 +1,18 @@
 const reservations = {
-  'Bob': { claimed: false },
-  'Ted': { claimed: true }
+  'Bob': {claimed: false},
+  'Ted': {claimed: true},
+  'Emma': {claimed: true},
+  'Nick': {claimed: false},
+  'Mary': {claimed: false}
 }
 
-let name = prompt('Please enter the name for your reservation');
+// let name = prompt('Please enter the name for your reservation');
 
 const claimReservation = function () {
   // write your code here!
+  let name = document.getElementById("input-name").value
+  name = capitalize(name)
   if (hasReservasion(name)) {
-    name = capitalize(name)
     if (reservations[name].claimed) {
       alert("You have already claimed your reservation")
     } else {
@@ -36,8 +40,8 @@ function capitalize (name) {
   return fixedName
 }
 
-function newReservation (user) {
+function newReservation (user) { //won't add to reservations (reservations[user] = undefined)
   reservations[user].claimed = true
 }
 
-claimReservation();
+// claimReservation();
