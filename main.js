@@ -18,13 +18,13 @@ const claimReservation = function () {
   name = capitalize(name)
   if (hasReservasion(name)) {
     if (reservations[name].claimed) {
-      alert("You have already claimed your reservation")
+      alert("Dear " + name + ", you have already claimed your reservation")
     } else {
-      alert("Welcome, " + name)
+      alert("Welcome, " + name + ". Your table is ready!")
       reservations[name].claimed = true
     }
   } else {
-    alert("We made a new reservation for you. Welcome, " + name)
+    alert("Luckily for you " + name + ", we have an empty table.")
     newReservation(name)
   }
 }
