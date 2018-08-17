@@ -3,14 +3,18 @@ const reservations = {
   'Ted': {claimed: true},
   'Emma': {claimed: true},
   'Nick': {claimed: false},
-  'Mary': {claimed: false}
+  'Mary': {claimed: false},
+  'John': {claimed: true},
+  'Alex': {claimed: true},
+  'Noa': {claimed: false},
+  'Nitzan': {claimed: false}
 }
 
-// let name = prompt('Please enter the name for your reservation');
+// let name = prompt('Please enter the name for your reservation'); //PROMPT
 
 const claimReservation = function () {
   // write your code here!
-  let name = document.getElementById("input-name").value
+  let name = document.getElementById("input-name").value //USER INPUT
   name = capitalize(name)
   if (hasReservasion(name)) {
     if (reservations[name].claimed) {
@@ -28,7 +32,7 @@ const claimReservation = function () {
 function hasReservasion (user) {
   const allNames = Object.keys(reservations)
   for (let n of allNames) {
-    if (user.toLowerCase() == n.toLowerCase()) {
+    if (user == n) {
       return true
     }
   }
@@ -40,8 +44,8 @@ function capitalize (name) {
   return fixedName
 }
 
-function newReservation (user) { //won't add to reservations (reservations[user] = undefined)
-  reservations[user].claimed = true
+function newReservation (user) {
+  reservations[user] = {claimed: true}
 }
 
-// claimReservation();
+// claimReservation(); //PROMPT
