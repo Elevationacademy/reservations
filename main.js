@@ -20,11 +20,11 @@ const claimReservation = function () {
     if (reservations[name].claimed) {
       alert("Dear " + name + ", you have already claimed your reservation")
     } else {
-      alert("Welcome, " + name + ". Your table is ready!")
+      alert("Welcome, " + name + "! Your table is ready!")
       reservations[name].claimed = true
     }
   } else {
-    alert("Luckily for you " + name + ", we have an empty table.")
+    alert("Lucky for you " + name + ", we have an empty table.")
     newReservation(name)
   }
 }
