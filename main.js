@@ -16,27 +16,30 @@ const claimReservation = function () {
   // write your code here!
   let name = document.getElementById("input-name").value //USER INPUT
   name = capitalize(name)
-  if (hasReservasion(name)) {
-    if (reservations[name].claimed) {
-      alert("Dear " + name + ", you have already claimed your reservation")
-    } else {
-      alert("Welcome, " + name + "! Your table is ready!")
-      reservations[name].claimed = true
-    }
+  if (checkReservasion(name)) {
+    reservations[name].claimed = true
   } else {
-    alert("Lucky for you " + name + ", we have an empty table.")
     newReservation(name)
   }
 }
 
-function hasReservasion (user) {
-  const allNames = Object.keys(reservations)
-  for (let n of allNames) {
-    if (user == n) {
-      return true
+function checkReservasion (name) {
+  const myRes = reservations[name]
+  let hasRes = true
+  let msg = document.createElement("p")
+  if (myRes) {
+    if(myRes.claimed) {
+      msg.innerHTML = "Dear " + name + ", you have already claimed your reservation"
     }
+    else {
+      msg.innerHTML = "Welcome, " + name + "! Your table is ready!"
+    }
+  } else {
+    msg.innerHTML = "Lucky for you " + name + ", we have an empty table."
+    hasRes = false
   }
-  return false
+  document.getElementById("welcome").appendChild(msg)
+  return hasRes
 }
 
 function capitalize (name) {
