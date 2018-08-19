@@ -13,6 +13,7 @@ let name= document.getElementById("input").value;
     if (name==x){
       if(reservations[i].claimed==false){
       document.getElementById("live").innerHTML = (i+" welcome");
+      reservations[i].claimed==true
       }
       else if(reservations[i].claimed==true){
       document.getElementById("live").innerHTML = (i+" someone has alrady claimed your reservation");
