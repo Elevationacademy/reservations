@@ -1,20 +1,12 @@
 const reservations = {
   'Bob': {claimed: false},
-  'Ted': {claimed: true},
-  'Emma': {claimed: true},
-  'Nick': {claimed: false},
-  'Mary': {claimed: false},
-  'John': {claimed: true},
-  'Alex': {claimed: true},
-  'Noa': {claimed: false},
-  'Nitzan': {claimed: false}
+  'Ted': {claimed: true}
 }
 
-// let name = prompt('Please enter the name for your reservation'); //PROMPT
+const msg = document.getElementById("display-msg")
 
 const claimReservation = function () {
-  // write your code here!
-  let name = document.getElementById("input-name").value //USER INPUT
+  let name = document.getElementById("input-name").value
   name = capitalize(name)
   if (checkReservasion(name)) {
     reservations[name].claimed = true
@@ -23,32 +15,28 @@ const claimReservation = function () {
   }
 }
 
-function checkReservasion (name) {
-  const myRes = reservations[name]
-  let hasRes = true
-  let msg = document.createElement("p")
-  if (myRes) {
-    if(myRes.claimed) {
-      msg.innerHTML = "Dear " + name + ", you have already claimed your reservation"
-    }
-    else {
-      msg.innerHTML = "Welcome, " + name + "! Your table is ready!"
-    }
-  } else {
-    msg.innerHTML = "Lucky for you " + name + ", we have an empty table."
-    hasRes = false
-  }
-  document.getElementById("welcome").appendChild(msg)
-  return hasRes
+function capitalize (name) {
+  return name[0].toUpperCase() + name.slice(1).toLowerCase()
 }
 
-function capitalize (name) {
-  let fixedName = name[0].toUpperCase() + name.slice(1).toLowerCase()
-  return fixedName
+function checkReservasion (name) {
+  const myRes = reservations[name]
+  if (myRes) {
+    if(myRes.claimed) {
+      displayMessage("you have already claimed your reservation, " + name)
+    } else {
+      displayMessage("Welcome, " + name + "! Your table is ready!")
+    }
+    return true
+  }
+  displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table")  
+  return false
 }
 
 function newReservation (user) {
   reservations[user] = {claimed: true}
 }
 
-// claimReservation(); //PROMPT
+function displayMessage (text) {
+  msg.innerHTML = text
+}
