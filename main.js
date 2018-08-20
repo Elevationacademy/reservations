@@ -29,7 +29,7 @@ function checkReservasion (name) {
     }
     return true
   }
-  displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table")  
+  displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table!")  
   return false
 }
 
