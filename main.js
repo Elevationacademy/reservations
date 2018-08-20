@@ -5,7 +5,7 @@ const reservations = {
 
 const msg = document.getElementById("display-msg")
 const capitalize = name => name[0].toUpperCase() + name.slice(1).toLowerCase()
-const newReservation = user => reservations[user] = {claimed: true}
+const createNewReservation = name => reservations[name] = {claimed: true}
 const displayMessage = text => msg.innerHTML = text
 
 const claimReservation = function () {
@@ -14,20 +14,20 @@ const claimReservation = function () {
   if (checkReservasion(name)) {
     reservations[name].claimed = true
   } else {
-    newReservation(name)
+    createNewReservation(name)
   }
 }
 
-function checkReservasion (name) {
-  const myRes = reservations[name]
-  if (myRes) {
-    if(myRes.claimed) {
-      displayMessage("you have already claimed your reservation, " + name)
-    } else {
-      displayMessage("Welcome, " + name + "! Your table is ready!")
-    }
+const checkReservasion = function (name) {
+  const reservation = reservations[name]
+  if (!reservation) {
+    displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table!")  
+    return false
+  }
+  if(reservation.claimed) {
+    displayMessage("you have already claimed your reservation, " + name)
     return true
   }
-  displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table!")  
-  return false
+  displayMessage("Welcome, " + name + "! Your table is ready!")
+  return true
 }
