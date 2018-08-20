@@ -4,6 +4,9 @@ const reservations = {
 }
 
 const msg = document.getElementById("display-msg")
+const capitalize = name => name[0].toUpperCase() + name.slice(1).toLowerCase()
+const newReservation = user => reservations[user] = {claimed: true}
+const displayMessage = text => msg.innerHTML = text
 
 const claimReservation = function () {
   let name = document.getElementById("input-name").value
@@ -13,10 +16,6 @@ const claimReservation = function () {
   } else {
     newReservation(name)
   }
-}
-
-function capitalize (name) {
-  return name[0].toUpperCase() + name.slice(1).toLowerCase()
 }
 
 function checkReservasion (name) {
@@ -31,12 +30,4 @@ function checkReservasion (name) {
   }
   displayMessage("We don't have a reservation under you name, " + name + ", but luckily we have an empty table!")  
   return false
-}
-
-function newReservation (user) {
-  reservations[user] = {claimed: true}
-}
-
-function displayMessage (text) {
-  msg.innerHTML = text
 }
